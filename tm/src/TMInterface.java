@@ -1,8 +1,10 @@
-package tm;
-public class TMInterface {
+import java.util.Set;
+
+//package tm;
+public interface TMInterface {
 
     /**
-     * Adds a a state to the TM instance
+     * Adds a a state to the tm.TM instance
      * @param name is the label of the state
      * @return true if a new state created successfully and false if there is already state with such name
      */
@@ -16,7 +18,7 @@ public class TMInterface {
     public boolean setFinal(String name);
 
     /**
-     * Adds the initial state to the TM instance
+     * Adds the initial state to the tm.TM instance
      * @param name is the label of the start state
      * @return true if successful and false if no state with such name exists
      */
@@ -30,17 +32,17 @@ public class TMInterface {
 
 
     /**
-     * Simulates a TM on input s to determine
-     * whether the TM accepts s.
+     * Simulates a tm.TM on input s to determine
+     * whether the tm.TM accepts s.
      * @param s - the input string
-     * @return true if s in the language of the TM and false otherwise
+     * @return true if s in the language of the tm.TM and false otherwise
      */
     public abstract boolean accepts(String s);
 
 
     /**
      * Getter for Sigma
-     * @return the alphabet of TM
+     * @return the alphabet of tm.TM
      */
     public Set<Character> getSigma();
 
