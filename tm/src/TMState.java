@@ -1,6 +1,6 @@
 package tm;
 import tm.State;
-public class TMState exteds State {
+public class TMState extends State {
 
 
 }
