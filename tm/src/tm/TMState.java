@@ -14,4 +14,25 @@ public class TMState extends State {
         this.name = name;
     }
 
+    /**
+     * If transitions contains the transition character,
+     * get the set and add to it. if not, create a set with the toState in it,
+     * then put the transition character and this new set.
+     *
+     * @param onSymb - transition character
+     * @param toState - state transitioning to
+     */
+    public void addTransition(char onSymb, TMState toState) {
+
+    }
+
+    /**
+     * toString for an TM State returns name of the state
+     *
+     * @return - name
+     */
+    public String toString() {
+        return name;
+    }
+
 }
