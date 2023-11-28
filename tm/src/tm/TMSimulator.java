@@ -20,16 +20,28 @@ public class TMSimulator {
 
             // create new TM
             TM tm = new TM();
+            int iterations = 0;
 
             while ((strLine = br.readLine()) != null) {
 
                 // read and add states
+                if (iterations == 0) {
+                    for (int i = 0; i < Integer.parseInt(strLine); i++) {
+                        tm.addState(Integer.toString(i));
+                    }
+                }
 
                 // read and add sigma
+                if (iterations == 1) {
+                    for (int i = 0; i <= Integer.parseInt(strLine); i++) {
+                        tm.addSigma((char) i);
+                    }
+                }
 
                 // read and add transitions
 
 
+                iterations++;
                 System.out.println(strLine);
             }
 
