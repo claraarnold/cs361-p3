@@ -26,6 +26,10 @@ public class TMState extends State {
 
     }
 
+    public void addToTap() {
+
+    }
+
     /**
      * toString for an TM State returns name of the state
      *
