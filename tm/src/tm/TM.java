@@ -8,17 +8,20 @@ public class TM implements TMInterface {
     /* Instance Variables */
     public LinkedHashSet<Character> sigma;
     public LinkedHashSet<TMState> states;
-    public LinkedHashSet<TMState> finalStates;
     public String startState;
+    public String finalState;
     public String q0;
-    public LinkedHashSet<TMState> F;
 
     /**
      * Constructor for Turing Machine (TM)
      * Initiates TM 6-tuple
      */
     public TM() {
-
+        sigma = new LinkedHashSet<>();
+        states = new LinkedHashSet<>();
+        startState = "0";
+        q0 = "0";
+        finalState = "";
     }
 
     @Override

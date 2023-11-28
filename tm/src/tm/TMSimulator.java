@@ -18,6 +18,9 @@ public class TMSimulator {
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
 
+            // create new TM
+            TM tm = new TM();
+
             while ((strLine = br.readLine()) != null) {
 
                 // read and add states
