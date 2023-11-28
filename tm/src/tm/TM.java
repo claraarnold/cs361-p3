@@ -9,7 +9,7 @@ public class TM implements TMInterface {
     public LinkedHashSet<Character> sigma;
     public LinkedHashSet<TMState> states;
     public String startState;
-    public String finalState;
+    public LinkedHashSet<TMState> finalState;
     public String q0;
 
     /**
@@ -21,27 +21,80 @@ public class TM implements TMInterface {
         states = new LinkedHashSet<>();
         startState = "0";
         q0 = "0";
-        finalState = "";
+        finalState = new LinkedHashSet<>();;
     }
 
     @Override
     public boolean addState(String name) {
-        return false;
+        boolean retVal = false;
+        TMState newState = new TMState(name);
+        if(states.isEmpty()) {
+            states.add(newState);
+            retVal = true;
+        } else {
+            for(TMState s : states) {
+                if(s.toString().equals(name)) { // if there is already a state with 'name'
+                    return retVal;
+                }
+            }
+        }
+        if(!retVal) { // if state created successfully
+            states.add(newState);
+            retVal = true;
+        }
+        return retVal;
     }
 
     @Override
     public boolean setFinal(String name) {
-        return false;
+        boolean retVal = false;
+        boolean done = false;
+        TMState newState = new TMState(name);
+        if (states.isEmpty()) {
+            return retVal;
+        } else {
+            while (!done) {
+                for (TMState s : states) {
+                    if (s.toString().equals(name)) {
+                        finalState.add(newState);
+                        retVal = true; // successfully added 'name' to finalStates
+                        break;
+                    } else {
+                        retVal = false; // no state with 'name' exists
+                    }
+                }
+                done = true;
+            }
+        }
+        return retVal;
     }
 
     @Override
     public boolean setStart(String name) {
-        return false;
+        boolean retVal = false;
+        boolean done = false;
+        if (states.isEmpty()) {
+            return retVal;
+        } else {
+            while (!done) {
+                for (TMState s : states) {
+                    if (s.toString().equals(name)) {
+                        startState = name;
+                        retVal = true; // successfully set 'name' to startState
+                        break;
+                    } else {
+                        retVal = false; // no state with 'name' exists
+                    }
+                }
+                done = true;
+            }
+        }
+        return retVal;
     }
 
     @Override
     public void addSigma(char symbol) {
-
+        sigma.add(symbol);
     }
 
     @Override
@@ -51,21 +104,33 @@ public class TM implements TMInterface {
 
     @Override
     public Set<Character> getSigma() {
-        return null;
+        return sigma;
     }
 
     @Override
     public tm.State getState(String name) {
+        for (TMState s : states) {
+            if (s.toString().equals(name)) {
+                return s;
+            }
+        }
         return null;
     }
 
     @Override
     public boolean isFinal(String name) {
-        return false;
+        boolean retVal = false;
+        for (TMState s : finalState) {
+            if (s.toString().equals(name)) {
+                retVal = true;
+                break;
+            }
+        }
+        return retVal;
     }
 
     @Override
     public boolean isStart(String name) {
-        return false;
+        return startState.equals(name);
     }
 }
