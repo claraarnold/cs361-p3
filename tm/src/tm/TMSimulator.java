@@ -19,6 +19,14 @@ public class TMSimulator {
             String strLine;
 
             while ((strLine = br.readLine()) != null) {
+
+                // read and add states
+
+                // read and add sigma
+
+                // read and add transitions
+
+
                 System.out.println(strLine);
             }
 
