@@ -52,8 +52,8 @@ public class TMState extends State {
      *
      * TODO: tape cases
      *
-     * @param symbol
-     * @param direction
+     * @param symbol - read symbol (or write)
+     * @param direction - direction to move on tape
      */
     public void addToTape(char symbol, char direction) {
         // Add the symbol to the current position on the tape
