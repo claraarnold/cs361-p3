@@ -92,6 +92,21 @@ public class TM implements TMInterface {
         return retVal;
     }
 
+    /**
+     * Adds a transition to the TM
+     *
+     * @param fromState - state transitioning from
+     * @param onSymb - transitions on this character
+     * @param toState - state transitioning to on onSymb
+     * @param writeChar - character written to tape
+     * @param direction - direction moved on tape
+     */
+    public void addTransition(TMState fromState, char onSymb, TMState toState, char writeChar, char direction) {
+        // use fromState to call TMState's addTransition on that state
+
+        // might have to write to the tape (linkedlist) in this method
+    }
+
     @Override
     public void addSigma(char symbol) {
         sigma.add(symbol);
