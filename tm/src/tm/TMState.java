@@ -21,9 +21,11 @@ public class TMState extends State {
      *
      * @param onSymb - transition character
      * @param toState - state transitioning to
+     * @param writeChar - character written to the tape
+     * @param direction - direction to move on the tape
      */
-    public void addTransition(char onSymb, TMState toState) {
-
+    public void addTransition(char onSymb, TMState toState, char writeChar, char direction) {
+        // add transition to toState on onSymb to this state's map
     }
 
     public void addToTap() {
