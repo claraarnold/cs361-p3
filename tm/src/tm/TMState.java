@@ -52,12 +52,12 @@ public class TMState extends State {
      *
      * TODO: tape cases
      *
-     * @param symbol - read symbol (or write)
+     * @param writeSymb - read symbol (or write)
      * @param direction - direction to move on tape
      */
-    public void addToTape(char symbol, char direction) {
+    public void addToTape(char writeSymb, char direction) {
         // Add the symbol to the current position on the tape
-        tape.add(tapeHead, symbol);
+        tape.add(tapeHead, writeSymb);
 
         // Move tape head according to the direction
         if (direction == 'L') {
@@ -83,6 +83,22 @@ public class TMState extends State {
             // Stay at the same position
         }
         // ... other handling or logic as needed
+    }
+
+    /**
+     * Handling the tape: reading character from tape, editing tape, and handling
+     * exception cases using a linked list
+     *
+     * @return
+     */
+    public char readFromTape() {
+        if (tapeHead >= 0 && tapeHead < tape.size()) {
+            return tape.get(tapeHead);
+        } else {
+            // Handle the case when the tape head is out of bounds
+            // For instance, return a default symbol or throw an exception
+            return '_'; // Returning '_' as a default symbol for demonstration
+        }
     }
 
     /**
