@@ -129,6 +129,10 @@ public class TM implements TMInterface {
 
     @Override
     public String accepts(String s) {
+        // get start state
+        // follow transitions starting from 0, updating current state to next state
+        // write to array list, next or previous based on L or R
+        // return array list in string form
         return "";
     }
 
