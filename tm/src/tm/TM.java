@@ -1,7 +1,6 @@
 package tm;
 
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class TM implements TMInterface {
@@ -22,7 +21,7 @@ public class TM implements TMInterface {
         states = new LinkedHashSet<>();
         startState = "0";
         q0 = "0";
-        finalState = new LinkedHashSet<>();;
+        finalState = new LinkedHashSet<>();
     }
 
     @Override
@@ -119,7 +118,7 @@ public class TM implements TMInterface {
             }
         }
 
-        // might have to write to the tape (linkedlist) in this method
+        // might have to write to the tape (LinkedList) in this method
     }
 
     @Override

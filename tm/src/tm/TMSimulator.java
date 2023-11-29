@@ -2,7 +2,6 @@ package tm;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
 public class TMSimulator {
@@ -14,20 +13,19 @@ public class TMSimulator {
         }
 
         try {
-            FileInputStream fstream = new FileInputStream(args[0]);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+            FileInputStream fileStream = new FileInputStream(args[0]);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fileStream));
             String strLine = br.readLine();
 
             // create new TM
             TM tm = new TM();
-            String currentState = "";
+            String currentState;
             int iterations = 0;     // number of times the while loop has looped
-            int numStates = 0;
             int statesThatHaveTransitions = 0;  // increment the state to add transition to
             int numSigma = 0;   // number of characters in the alphabet
-            String toState = ""; // to state to pass into addTransition
-            char writeChar = 'z'; // onSymb to pass into addTransition
-            char direction = 'j'; // direction to pass into addTransition
+            String toState; // to state to pass into addTransition
+            char writeChar; // onSymb to pass into addTransition
+            char direction; // direction to pass into addTransition
 
             while (strLine != null) {
 
@@ -68,14 +66,11 @@ public class TMSimulator {
 
                         tm.addTransition(currentState, (char) i, toState, writeChar, direction);
                         strLine = br.readLine();
-//                        System.out.println(i);
-//                        System.out.println(strLine);
                     }
                 }
 
 
                 iterations++;
-//                System.out.println(strLine);
             }
 
         } catch (Exception e) {

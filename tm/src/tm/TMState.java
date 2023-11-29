@@ -1,5 +1,4 @@
 package tm;
-import tm.State;
 
 import java.util.*;
 
@@ -49,7 +48,6 @@ public class TMState extends State {
     /**
      * Handling the tape: adding character to tape, moving tape, and handling
      * exception cases using a linked list
-     *
      * TODO: tape cases
      *
      * @param writeSymb - read symbol (or write)
@@ -89,7 +87,7 @@ public class TMState extends State {
      * Handling the tape: reading character from tape, editing tape, and handling
      * exception cases using a linked list
      *
-     * @return
+     * @return - char
      */
     public char readFromTape() {
         if (tapeHead >= 0 && tapeHead < tape.size()) {
