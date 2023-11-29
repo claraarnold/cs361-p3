@@ -16,27 +16,27 @@ public class TMSimulator {
         try {
             FileInputStream fstream = new FileInputStream(args[0]);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-            String strLine;
+            String strLine = br.readLine();
 
             // create new TM
             TM tm = new TM();
-            TMState currentState = new TMState("");
-            int iterations = 0;
+            String currentState = "";
+            int iterations = 0;     // number of times the while loop has looped
             int numStates = 0;
-            int statesAdded = 0;
-            int numSigma = 0;
+            int statesThatHaveTransitions = 0;  // increment the state to add transition to
+            int numSigma = 0;   // number of characters in the alphabet
+            String toState = ""; // to state to pass into addTransition
+            char writeChar = 'z'; // onSymb to pass into addTransition
+            char direction = 'j'; // direction to pass into addTransition
 
-            while ((strLine = br.readLine()) != null) {
-
-                // if numsigma is 0, set to 3
+            while (strLine != null) {
 
                 // read and add states
                 if (iterations == 0) {
-//                    numStates = Integer.parseInt(strLine);
                     for (int i = 0; i < Integer.parseInt(strLine); i++) {
                         tm.addState(Integer.toString(i));
-                        System.out.println("State added: " + i);
                     }
+                    strLine = br.readLine();
                 }
 
                 // read and add sigma
@@ -45,6 +45,7 @@ public class TMSimulator {
                         tm.addSigma((char) i);
                         numSigma++;
                     }
+                    strLine = br.readLine();
                 }
 
                 // read and add transitions
@@ -52,17 +53,29 @@ public class TMSimulator {
                     // iterate as many times as there are sigma characters
                     for (int i = 0; i < numSigma; i++) {
                         // call tm.addTransition with the following things:
-                        // get current state (changes every 4 sigmas)
-                        // get onSymb (should just be i)
-                        // get toState (first value of readLine()) - use a delimiter ','??"
-                        // get character to write (second value of readLine())
-                        // get direction (third value of readLine())
+                        // get current state (changes every 4 sigmas) (string)
+                        currentState = Integer.toString(statesThatHaveTransitions);
+                        if (i == (numSigma - 1)) {
+                            statesThatHaveTransitions++;
+                        }
+
+                        toState = String.valueOf(strLine.charAt(0));
+                        writeChar = strLine.charAt(2);
+                        direction = strLine.charAt(4);
+
+                        System.out.println("fromState: " + currentState + ", onSymb: " + i
+                                + ", toState: " + toState + ", writeChar: " + writeChar + ", direction: " + direction);
+
+                        tm.addTransition(currentState, (char) i, toState, writeChar, direction);
+                        strLine = br.readLine();
+//                        System.out.println(i);
+//                        System.out.println(strLine);
                     }
                 }
 
 
                 iterations++;
-                System.out.println(strLine);
+//                System.out.println(strLine);
             }
 
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package tm;
 
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class TM implements TMInterface {
@@ -101,8 +102,22 @@ public class TM implements TMInterface {
      * @param writeChar - character written to tape
      * @param direction - direction moved on tape
      */
-    public void addTransition(TMState fromState, char onSymb, TMState toState, char writeChar, char direction) {
-        // use fromState to call TMState's addTransition on that state
+    public void addTransition(String fromState, char onSymb, String toState, char writeChar, char direction) {
+        TMState goToState = new TMState("");
+
+        // find toState
+        for (TMState s : states) {
+            if (s.getName().equals(toState)) {
+                goToState = s;
+            }
+        }
+
+        // find fromState and add transition to it with parsed values
+        for (TMState s : states) {
+            if (s.getName().equals(fromState)) {
+                s.addTransition(onSymb, goToState, writeChar, direction);
+            }
+        }
 
         // might have to write to the tape (linkedlist) in this method
     }
@@ -113,8 +128,8 @@ public class TM implements TMInterface {
     }
 
     @Override
-    public boolean accepts(String s) {
-        return false;
+    public String accepts(String s) {
+        return "";
     }
 
     @Override

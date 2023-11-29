@@ -39,7 +39,7 @@ public interface TMInterface {
      * @param s - the input string
      * @return true if s in the language of the tm.TM and false otherwise
      */
-    public abstract boolean accepts(String s);
+    public abstract String accepts(String s);
 
 
     /**
