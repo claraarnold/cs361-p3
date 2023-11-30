@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 public class TMSimulator {
+    private static TM tm;
+    private static String string;
     public static void main(String[] args) {
 
         if (args.length != 1) {
@@ -18,7 +20,7 @@ public class TMSimulator {
 //            String strLine = br.readLine();
 
             // create new TM
-            TM tm = new TM();
+            tm = new TM();
             String currentState;
             int iterations = 0;     // number of times the while loop has looped
             int statesThatHaveTransitions = 0;  // increment the state to add transition to
@@ -27,10 +29,11 @@ public class TMSimulator {
             String toState; // to state to pass into addTransition
             char writeChar; // onSymb to pass into addTransition
             char direction; // direction to pass into addTransition
-            int eof = 0;
+            boolean stringGotSet = false;
+            string = "";
 
             String strLine = br.readLine();
-            while (strLine != null) {
+            while (strLine != null /* && !strLine.isEmpty() */) {
                 iterations++;
 
 
@@ -50,7 +53,6 @@ public class TMSimulator {
                         numSigma++;
                     }
                     strLine = br.readLine();
-                    eof = (numStates - 1) * (numSigma);
                 }
 
                 // read and add transitions
@@ -73,23 +75,33 @@ public class TMSimulator {
 
                         tm.addTransition(currentState, (char) i, toState, writeChar, direction);
                         strLine = br.readLine();
-//                        iterations++;
                     }
                 }
 
                 else {
-                    System.out.println(strLine);
+                    string = strLine;
+                    stringGotSet = true;
+//                    if (strLine.isEmpty()) {
+//                        string = "0";
+//                    } else {
+//                        string = strLine;
+//                    }
+
                     strLine = br.readLine();
                 }
 
+            }
 
-//                iterations++;
-//                System.out.println("Iterations: " + iterations);
+            if (!stringGotSet) {
+                string = "0";
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println(string);
+        System.out.println(tm.walkThrough(string));
 
     }
 }
