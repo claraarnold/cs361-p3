@@ -65,7 +65,7 @@ public class TMState extends State {
                 // Handle reaching the start of the tape
                 // For example, extend the tape to the left or throw an exception
                 // Here's a simple extension example:
-                tape.addFirst('_'); // '_' represents a blank symbol or any default symbol
+                tape.addFirst('0'); // blank symbol
                 tapeHead = 0; // Reset the tape head position
             }
         } else if (direction == 'R') {
@@ -75,7 +75,7 @@ public class TMState extends State {
                 // Handle reaching the end of the tape
                 // For example, extend the tape to the right or throw an exception
                 // Here's a simple extension example:
-                tape.addLast('_'); // '_' represents a blank symbol or any default symbol
+                tape.addLast('0'); // blank symbol
             }
         } else {
             // Stay at the same position
@@ -95,7 +95,7 @@ public class TMState extends State {
         } else {
             // Handle the case when the tape head is out of bounds
             // For instance, return a default symbol or throw an exception
-            return '_'; // Returning '_' as a default symbol for demonstration
+            return '0'; // returning blank symbol
         }
     }
 
