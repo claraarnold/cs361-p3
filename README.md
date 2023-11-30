@@ -18,5 +18,6 @@
 
 - Lecture notes
 - P3 project description
+- P2 and P1 machine methods
 
 ----------
