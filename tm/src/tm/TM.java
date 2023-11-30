@@ -127,11 +127,10 @@ public class TM implements TMInterface {
     }
 
     @Override
-    public String accepts(String s) {
-        // get start state
-        // follow transitions starting from 0, updating current state to next state
-        // write to array list, next or previous based on L or R
-        // return array list in string form
+    public String walkThrough(String s) {
+        // 1. walk through string and add each char to node in tape (linked list)
+        // 2. then walk through transitions updating current state to next state while writing to tape
+        // 3. return the tape as a string
         return "";
     }
 
