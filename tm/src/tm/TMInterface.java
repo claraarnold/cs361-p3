@@ -34,12 +34,15 @@ public interface TMInterface {
 
 
     /**
-     * Simulates a tm.TM on input s to determine
-     * whether the tm.TM accepts s.
+     * Simulates a tm.TM on input s to walk through
+     * the tm.TM and keep track of what tape positions
+     * were visited then print the final contents of
+     * those tape positions.
+     *
      * @param s - the input string
      * @return true if s in the language of the tm.TM and false otherwise
      */
-    public abstract String accepts(String s);
+    public abstract String walkThrough(String s);
 
 
     /**
