@@ -50,7 +50,6 @@ public class TMState extends State {
      * @return NULL - if no transition for input symbol found
      */
     public Object[] getTransition(char symbol) {
-        // TODO: THIS IS THE PROBLEM
         if (transitions.containsKey(symbol)) {
             return transitions.get(symbol);
         }

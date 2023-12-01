@@ -30,6 +30,7 @@ public class TMSimulator {
             char writeChar; // onSymb to pass into addTransition
             char direction; // direction to pass into addTransition
             boolean stringGotSet = false;
+            char onSymb = 0;
             string = "";
 
             String strLine = br.readLine();
@@ -73,7 +74,13 @@ public class TMSimulator {
                         System.out.println("fromState: " + currentState + ", onSymb: " + i
                                 + ", toState: " + toState + ", writeChar: " + writeChar + ", direction: " + direction);
 
-                        tm.addTransition(currentState, (char) i, toState, writeChar, direction);
+                        // if i = 0, casting it to (char) will result in the null character
+                        if (i == 0) {
+                            onSymb = '0';
+                        } else {
+                            onSymb = (char) ('0' + i);
+                        }
+                        tm.addTransition(currentState, onSymb, toState, writeChar, direction);
                         strLine = br.readLine();
                     }
                 }

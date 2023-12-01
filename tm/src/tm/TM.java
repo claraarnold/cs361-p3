@@ -150,7 +150,7 @@ public class TM implements TMInterface {
             if(transitionInfo == null) {
                 break; // no transition found
             }
-
+            // casting these might cause problems if it's 0, like before
             tape.set(tapeHead, (char) transitionInfo[1]); // write symbol to tape
             char direction = (char) transitionInfo[2]; // get direction from transition
             if (direction == 'R') {
