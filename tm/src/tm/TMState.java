@@ -42,20 +42,10 @@ public class TMState extends State {
     }
 
     /**
-     * Gets transitions from Object[] which holds transition information
-     * given an input symbol
+     * getTransition() returns the transition map
      *
-     * @param symbol - input symbol
-     * @return transition information
-     * @return NULL - if no transition for input symbol found
+     * @return - transitions
      */
-    public Object[] getTransition(char symbol) {
-        if (transitions.containsKey(symbol)) {
-            return transitions.get(symbol);
-        }
-        return null; // if no transition found for the symbol
-    }
-
     public Map<Character, Object[]> getTransitions() {
         return transitions;
     }

@@ -17,7 +17,6 @@ public class TMSimulator {
         try {
             FileInputStream fileStream = new FileInputStream(args[0]);
             BufferedReader br = new BufferedReader(new InputStreamReader(fileStream));
-//            String strLine = br.readLine();
 
             // create new TM
             tm = new TM();
@@ -30,11 +29,11 @@ public class TMSimulator {
             char writeChar; // onSymb to pass into addTransition
             char direction; // direction to pass into addTransition
             boolean stringGotSet = false;
-            char onSymb = 0;
+            char onSymb;
             string = "";
 
             String strLine = br.readLine();
-            while (strLine != null /* && !strLine.isEmpty() */) {
+            while (strLine != null) {
                 iterations++;
 
 
@@ -60,7 +59,6 @@ public class TMSimulator {
                 else if (iterations > 2 && iterations <= (numStates - 1) + 2) {
                     // iterate as many times as there are sigma characters
                     for (int i = 0; i < numSigma; i++) {
-                        // call tm.addTransition with the following things:
                         // get current state (changes every 4 sigmas) (string)
                         currentState = Integer.toString(statesThatHaveTransitions);
                         if (i == (numSigma - 1)) {
@@ -71,10 +69,10 @@ public class TMSimulator {
                         writeChar = strLine.charAt(2);
                         direction = strLine.charAt(4);
 
-                        System.out.println("fromState: " + currentState + ", onSymb: " + i
-                                + ", toState: " + toState + ", writeChar: " + writeChar + ", direction: " + direction);
+                        /* TESTING INPUT TAKEN CORRECTLY */
+//                        System.out.println("fromState: " + currentState + ", onSymb: " + i
+//                                + ", toState: " + toState + ", writeChar: " + writeChar + ", direction: " + direction);
 
-                        // if i = 0, casting it to (char) will result in the null character
                         if (i == 0) {
                             onSymb = '0';
                         } else {
@@ -88,11 +86,6 @@ public class TMSimulator {
                 else {
                     string = strLine;
                     stringGotSet = true;
-//                    if (strLine.isEmpty()) {
-//                        string = "0";
-//                    } else {
-//                        string = strLine;
-//                    }
 
                     strLine = br.readLine();
                 }
@@ -107,8 +100,6 @@ public class TMSimulator {
             e.printStackTrace();
         }
 
-        System.out.println(string);
         System.out.println(tm.walkThrough(string));
-
     }
 }

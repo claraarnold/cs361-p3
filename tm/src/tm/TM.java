@@ -1,10 +1,8 @@
 package tm;
 
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TransferQueue;
 
 public class TM implements TMInterface {
 
@@ -14,7 +12,7 @@ public class TM implements TMInterface {
     public String startState;
     public LinkedHashSet<TMState> finalState;
     public String q0;
-    private LinkedList<Character> tape;
+    private StringBuilder tape;
     private int tapeHead;
 
     /**
@@ -27,7 +25,7 @@ public class TM implements TMInterface {
         startState = "0";
         q0 = "0";
         finalState = new LinkedHashSet<>();
-        this.tape = new LinkedList<>();
+        this.tape = new StringBuilder();
         this.tapeHead = 0; // assuming tape head position is at 0
     }
 
@@ -124,8 +122,6 @@ public class TM implements TMInterface {
                 s.addTransition(onSymb, goToState, writeChar, direction);
             }
         }
-
-        // might have to write to the tape (LinkedList) in this method
     }
 
     @Override
@@ -136,36 +132,39 @@ public class TM implements TMInterface {
     @Override
     public String walkThrough(String s) {
         /* Walk through string and add each char to node on tape (linked list) */
-        tape.clear(); // clear tape
+        tape.setLength(0);  // clear tape
         for (char c : s.toCharArray()) {
-            tape.add(c);
+            tape.append(c);
         }
-        tape.add('0'); // blank denotes end of string
+        tape.append('0');
         tapeHead = 0;
+        char currChar = tape.charAt(tapeHead); // get current char on tape
+        char direction = 'S';
 
         /* Walk through transitions updating current state to next state while writing to tape */
         TMState currState = getState(startState);
         while(currState != null) {
-            char currChar = tape.get(tapeHead); // get char on tape
-//            Object[] transitionInfo = currState.getTransition(currChar); // get transition from char
+            currChar = tape.charAt(tapeHead);   // get char on tape
+
             Map<Character, Object[]> transitions = currState.getTransitions();
             Object[] transitionInfo = transitions.get(currChar);
 
             if(transitionInfo == null) {
                 break; // no transition found
             }
-            // casting these might cause problems if it's 0, like before
-            tape.set(tapeHead, (char) transitionInfo[1]); // write symbol to tape
-            char direction = (char) transitionInfo[2]; // get direction from transition
+
+            tape.setCharAt(tapeHead, (char) transitionInfo[1]);
+            direction = (char) transitionInfo[2];
+
             if (direction == 'R') {
-                tapeHead++; // move right
-                if (tapeHead >= tape.size()) {
-                    tape.add('0'); // extend tape
+                tapeHead++;
+                if (tapeHead >= tape.length()) {
+                    tape.append('0'); // end of tape
                 }
             } else if (direction == 'L') {
-                tapeHead--; // move left
+                tapeHead--;
                 if (tapeHead < 0) {
-                    tape.addFirst('0');
+                    tape.insert(0, '0');
                     tapeHead = 0;
                 }
             }
@@ -173,12 +172,7 @@ public class TM implements TMInterface {
             currState = (TMState) transitionInfo[0]; // update currState
         }
 
-        /* Return the tape as a string */
-        StringBuilder contents = new StringBuilder();
-        for (Character c : tape) {
-            contents.append(c);
-        }
-        return contents.toString();
+        return tape.toString();
     }
 
     @Override
