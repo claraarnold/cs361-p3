@@ -2,6 +2,12 @@ package tm;
 
 import java.util.*;
 
+/**
+ * TMState holds the transition information that a Turing Machine
+ * requires: transition states, read symbol, write symbol, direction
+ *
+ * @author claraarnold, joelathrop
+ */
 public class TMState extends State {
 
     public String name;

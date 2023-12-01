@@ -4,6 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
+/**
+ * TMSimulator reads in an input file in order to simulate
+ * a Turing Machine using the program methods
+ *
+ * @author claraarnold, joelathrop
+ */
 public class TMSimulator {
     private static TM tm;
     private static String string;
