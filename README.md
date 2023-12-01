@@ -31,8 +31,15 @@ This project was really cool and a very good accumulation of all the projects we
 thinking through everything and finishing strong!
 
 ## Compiling and Using
+To compile:
+- $ cd tm/src/tm
+- $ javac *.java
 
-- $ java tm.TMSimulator <filepath-to-file>\filename.txt
+To use (must move back to tm/src):
+- $ cd -
+- $ java tm.TMSimulator filename.txt
+
+file0, file2, and file5 are all under the tm/src directory and this is how we have been running it.
 
 ## Sources used
 
