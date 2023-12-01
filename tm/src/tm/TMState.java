@@ -56,6 +56,10 @@ public class TMState extends State {
         return null; // if no transition found for the symbol
     }
 
+    public Map<Character, Object[]> getTransitions() {
+        return transitions;
+    }
+
     /**
      * toString for an TM State returns name of the state
      *

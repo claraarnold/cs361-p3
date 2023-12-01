@@ -2,7 +2,9 @@ package tm;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TransferQueue;
 
 public class TM implements TMInterface {
 
@@ -145,7 +147,9 @@ public class TM implements TMInterface {
         TMState currState = getState(startState);
         while(currState != null) {
             char currChar = tape.get(tapeHead); // get char on tape
-            Object[] transitionInfo = currState.getTransition(currChar); // get transition from char
+//            Object[] transitionInfo = currState.getTransition(currChar); // get transition from char
+            Map<Character, Object[]> transitions = currState.getTransitions();
+            Object[] transitionInfo = transitions.get(currChar);
 
             if(transitionInfo == null) {
                 break; // no transition found
