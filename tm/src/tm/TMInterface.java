@@ -2,11 +2,16 @@ package tm;
 
 import java.util.Set;
 
-//package tm;
+/**
+ * Interface to methods for building a machine that can
+ * simulate a Turing Machine
+ *
+ * @author claraarnold, joelathrop
+ */
 public interface TMInterface {
 
     /**
-     * Adds a a state to the tm.TM instance
+     * Adds a state to the tm.TM instance
      * @param name is the label of the state
      * @return true if a new state created successfully and false if there is already state with such name
      */
