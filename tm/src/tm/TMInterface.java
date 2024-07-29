@@ -32,7 +32,6 @@ public interface TMInterface {
      */
     public void addSigma(char symbol);
 
-
     /**
      * Simulates a tm.TM on input s to walk through
      * the tm.TM and keep track of what tape positions
