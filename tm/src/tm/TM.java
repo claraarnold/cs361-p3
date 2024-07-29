@@ -124,6 +124,7 @@ public class TM implements TMInterface {
         }
     }
 
+
     @Override
     public void addSigma(char symbol) {
         sigma.add(symbol);
